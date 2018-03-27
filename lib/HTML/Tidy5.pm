@@ -219,10 +219,14 @@ tidy, or parsing tidy's output.
 sub parse {
     my $self = shift;
     my $filename = shift;
+
     if (@_ == 0) {
         Carp::croak('Usage: parse($filename,$str [, $str...])');
     }
-    my $html = join( '', @_ );
+
+    my @lines = map { split /\n/ } @_;
+    $self->{_source} = [@lines];
+    my $html = join( "\n", @lines );
 
     utf8::encode($html) if utf8::is_utf8($html);
     my ($errorblock,$newline) = _tidy_messages( $html, $self->{config_file}, $self->{tidy_options} );
@@ -253,8 +257,12 @@ sub _parse_errors {
                 ($type eq 'Warning') ? TIDY_WARNING :
                 ($type eq 'Info')    ? TIDY_INFO :
                                        TIDY_ERROR;
-            $message = HTML::Tidy5::Message->new( $filename, $type, $line, $col, $text );
 
+            my $context;
+            if ( $line > 0 ) {
+                $context = $self->{_source}->[$line-1];
+            }
+            $message = HTML::Tidy5::Message->new( $filename, $type, $line, $col, $text, $context );
         }
         elsif ( $line =~ m/^Info: (.+)$/  ) {
             # Info line we don't want
@@ -268,15 +276,12 @@ sub _parse_errors {
         }
         elsif ( $line eq 'No warnings or errors were found.' ) {
             # Summary line we don't want
-
         }
         elsif ( $line eq 'This document has errors that must be fixed before' ) {
             # Summary line we don't want
-
         }
         elsif ( $line eq 'using HTML Tidy to generate a tidied up version.' ) {
             # Summary line we don't want
-
         }
         elsif ( $line =~ m/^\s*$/  ) {
             # Blank line we don't want

@@ -16,7 +16,7 @@ None.  It's all object-based.
 
 Almost everything is an accessor.
 
-=head2 new( $file, $line, $column, $text )
+=head2 new( $file, $line, $column, $text, $context )
 
 Create an object.  It's not very exciting.
 
@@ -25,22 +25,22 @@ C<$file> can be C<undef> or an empty string, in which case it will not appear in
 =cut
 
 sub new {
-    my $class  = shift;
+    my $class   = shift;
 
-    my $file   = shift;
-    my $type   = shift;
-    my $line   = shift || 0;
-    my $column = shift || 0;
-    my $text   = shift;
+    my $file    = shift;
+    my $type    = shift;
+    my $line    = shift || 0;
+    my $column  = shift || 0;
+    my $text    = shift;
+    my $context = shift;
 
-    # Add an element that says what tag caused the error (B, TR, etc)
-    # so that we can match 'em up down the road.
     my $self  = {
-        _file   => $file,
-        _type   => $type,
-        _line   => $line,
-        _column => $column,
-        _text   => $text,
+        _file    => $file,
+        _type    => $type,
+        _line    => $line,
+        _column  => $column,
+        _text    => $text,
+        _context => $context,
     };
 
     bless $self, $class;
@@ -63,15 +63,17 @@ sub as_string {
         3 => 'Error',
     );
 
-    my $msg = $strings{$self->type} . ': ' . $self->text;
 
-    if ( $self->line && $self->column ) {
-        $msg = sprintf( '(%d:%d) %s', $self->line, $self->column, $msg );
-    }
-
+    my $line_prefix = $self->line && $self->column ? sprintf( '(%d:%d) ', $self->line, $self->column ) : '';
     my $file = $self->file // '';
     if ( $file ne '' ) {
-        $msg = "$file $msg";
+        $line_prefix = "$file $line_prefix";
+    }
+
+    my $msg = $strings{$self->type} . ': ' . $self->text;
+    $msg = "$line_prefix$msg";
+    if ( my $context = $self->context ) {
+        $msg .= "\n$line_prefix" . $context;
     }
 
     return $msg;
@@ -108,6 +110,7 @@ sub type    { my $self = shift; return $self->{_type} }
 sub line    { my $self = shift; return $self->{_line} }
 sub column  { my $self = shift; return $self->{_column} }
 sub text    { my $self = shift; return $self->{_text} }
+sub context { my $self = shift; return $self->{_context} }
 
 
 =head1 COPYRIGHT & LICENSE
