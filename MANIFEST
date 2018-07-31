@@ -16,6 +16,7 @@ t/cfg-for-parse.t
 t/clean.t
 t/clean-crash.t
 t/drop-empty-elements.t
+t/empty-tags.t
 t/extra-quote.t
 t/html_fragment_tidy_ok.t
 t/html_tidy_ok.t
