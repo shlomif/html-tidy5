@@ -431,6 +431,18 @@ L<http://github.com/shlomif/html-tidy5>
 
 =back
 
+=head1 MOTIVATION
+
+L<HTML::Tidy5> is painful to install on L<https://en.wikipedia.org/wiki/Continuous_integration>
+services, and even my L<https://github.com/shlomif/ci-gen-framework> cannot
+help enough. We hope that this fork based on L<Alien::TidyHTML5> will
+ease the installation pains and allow for less CPAN Testers failure.
+
+=head1 MEDIA LINKS
+
+Getting the green test bar (= for success) reminds me of L<this performance of "Green Light" by Lorde, live at Glastonbury|http://www.shlomifish.org/Files/files/video/Lorde%20-%20Green%20Light%20(Glastonbury%202017)-Y3urw1bnEMM.webm>
+which used to be on YouTube but the account was terminated.
+
 =head1 ACKNOWLEDGEMENTS
 
 Thanks to
@@ -442,7 +454,7 @@ Thanks to L<https://github.com/robrwo> for the code to use L<Alien::TidyHTML5> .
 
 =head1 AUTHOR
 
-Andy Lester, C<< <andy at petdance.com> >>
+Shlomi Fish, L<https://www.shlomifish.org/>, L<https://metacpan.org/author/SHLOMIF>
 
 =head1 COPYRIGHT & LICENSE
 
