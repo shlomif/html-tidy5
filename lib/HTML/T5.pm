@@ -11,13 +11,11 @@ use HTML::T5::Message;
 
 HTML::T5 - HTML validation in a Perl object
 
-=head1 VERSION
-
-Version 1.06
+Version 0.001
 
 =cut
 
-our $VERSION = '1.06';
+our $VERSION = '0.001';
 
 =head1 SYNOPSIS
 

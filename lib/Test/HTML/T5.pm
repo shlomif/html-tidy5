@@ -28,7 +28,11 @@ Version 1.06
 
 =cut
 
+<<<<<<< HEAD
 our $VERSION = '1.06';
+=======
+our $VERSION = '0.001';
+>>>>>>> 4a22acc (decrease the version)
 
 my $TB = Test::Builder->new;
 
