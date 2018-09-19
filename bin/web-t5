@@ -71,12 +71,12 @@ for my $url ( @ARGV ) {
 } # for files
 
 __END__
-Usage: webtidy [filename or url]... (filename - reads STDIN)
+Usage: web-t5 [filename or url]... (filename - reads STDIN)
     --context[=n]   Show the offending line (and n surrounding lines)
     --noerrors      Ignore errors
     --nowarnings    Ignore warnings
 
     --help          This message
 
-webtidy is free software.  You may modify or distribute it under the
+web-t5 is free software.  You may modify or distribute it under the
 terms of the Artistic License v2.0.

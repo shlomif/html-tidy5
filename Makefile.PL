@@ -100,13 +100,13 @@ my $parms = {
         },
         resources => {
             license     => 'http://www.opensource.org/licenses/artistic-license-2.0.php',
-            homepage    => 'http://github.com/petdance/html-tidy5',
-            bugtracker  => 'http://github.com/petdance/html-tidy5/issues',
-            repository  => 'http://github.com/petdance/html-tidy5',
+            homepage    => 'http://github.com/shlomif/html-tidy5',
+            bugtracker  => 'http://github.com/shlomif/html-tidy5/issues',
+            repository  => 'http://github.com/shlomif/html-tidy5',
         },
     },
     @build,
-    EXE_FILES           => [qw(bin/webtidy5)],
+    EXE_FILES           => [qw(bin/web-t5)],
     dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean               => { FILES => 'HTML-T5-*' },
 };
