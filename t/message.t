@@ -6,12 +6,12 @@ use strict;
 
 use Test::More tests => 8;
 
-use HTML::Tidy5;
-use HTML::Tidy5::Message;
+use HTML::T5;
+use HTML::T5::Message;
 
 WITH_LINE_NUMBERS_WITH_FILENAME: {
-    my $error = HTML::Tidy5::Message->new( 'foo.pl', TIDY_ERROR, 2112, 5150, 'Blah blah' );
-    isa_ok( $error, 'HTML::Tidy5::Message' );
+    my $error = HTML::T5::Message->new( 'foo.pl', TIDY_ERROR, 2112, 5150, 'Blah blah' );
+    isa_ok( $error, 'HTML::T5::Message' );
 
     my %expected = (
         file        => 'foo.pl',
@@ -25,8 +25,8 @@ WITH_LINE_NUMBERS_WITH_FILENAME: {
 }
 
 WITH_LINE_NUMBERS_WITHOUT_FILENAME: {
-    my $error = HTML::Tidy5::Message->new( undef, TIDY_ERROR, 2112, 5150, 'Blah blah' );
-    isa_ok( $error, 'HTML::Tidy5::Message' );
+    my $error = HTML::T5::Message->new( undef, TIDY_ERROR, 2112, 5150, 'Blah blah' );
+    isa_ok( $error, 'HTML::T5::Message' );
 
     my %expected = (
         file        => undef,
@@ -40,8 +40,8 @@ WITH_LINE_NUMBERS_WITHOUT_FILENAME: {
 }
 
 WITHOUT_LINE_NUMBERS_WITH_FILENAME: {
-    my $error = HTML::Tidy5::Message->new( 'bar.pl', TIDY_WARNING, undef, undef, 'Blah blah' );
-    isa_ok( $error, 'HTML::Tidy5::Message' );
+    my $error = HTML::T5::Message->new( 'bar.pl', TIDY_WARNING, undef, undef, 'Blah blah' );
+    isa_ok( $error, 'HTML::T5::Message' );
 
     my %expected = (
         file        => 'bar.pl',
@@ -55,8 +55,8 @@ WITHOUT_LINE_NUMBERS_WITH_FILENAME: {
 }
 
 WITHOUT_LINE_NUMBERS_WITHOUT_FILENAME: {
-    my $error = HTML::Tidy5::Message->new( undef, TIDY_WARNING, undef, undef, 'Blah blah' );
-    isa_ok( $error, 'HTML::Tidy5::Message' );
+    my $error = HTML::T5::Message->new( undef, TIDY_WARNING, undef, undef, 'Blah blah' );
+    isa_ok( $error, 'HTML::T5::Message' );
 
     my %expected = (
         file        => undef,

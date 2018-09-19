@@ -7,7 +7,7 @@ use strict;
 use Test::More tests => 5;
 
 use Test::Builder::Tester;
-use Test::HTML::Tidy5;
+use Test::HTML::T5;
 
 
 subtest 'html_tidy_ok fails on undef' => sub {
@@ -103,8 +103,8 @@ HTML
     test_test( 'html_tidy_ok works on empty paragraph' );
 
     # Now make our own more relaxed Tidy object and it should pass.
-    my $tidy = HTML::Tidy5->new( { drop_empty_elements => 0 } );
-    isa_ok( $tidy, 'HTML::Tidy5' );
+    my $tidy = HTML::T5->new( { drop_empty_elements => 0 } );
+    isa_ok( $tidy, 'HTML::T5' );
     test_out( 'ok 1 - Relaxed tidy' );
     html_tidy_ok( $tidy, $html, 'Relaxed tidy' );
     test_test( 'html_tidy_ok with user-specified tidy works' );
@@ -114,8 +114,8 @@ HTML
 subtest 'Reusing a tidy object' => sub {
     plan tests => 7;
 
-    my $tidy = HTML::Tidy5->new();
-    isa_ok( $tidy, 'HTML::Tidy5' );
+    my $tidy = HTML::T5->new();
+    isa_ok( $tidy, 'HTML::T5' );
 
     my $very_bad_html = <<'HTML';
 <!DOCTYPE html>

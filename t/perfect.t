@@ -6,14 +6,14 @@ use strict;
 
 use Test::More tests => 3;
 
-use HTML::Tidy5;
+use HTML::T5;
 
 my $html = join '', <DATA>;
 
 # No errors at all.
 
-my $tidy = HTML::Tidy5->new;
-isa_ok( $tidy, 'HTML::Tidy5' );
+my $tidy = HTML::T5->new;
+isa_ok( $tidy, 'HTML::T5' );
 
 $tidy->ignore( type => TIDY_INFO );
 my $rc = $tidy->parse( '-', $html );

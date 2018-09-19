@@ -6,7 +6,7 @@ use strict;
 
 use Test::More tests => 1;
 
-use HTML::Tidy5;
+use HTML::T5;
 
 my $input=q{Here's some <B>ed and <BR/>eakfest MarkUp};
 
@@ -30,7 +30,7 @@ EOD
 my @expected = split(/\n/, $expected);
 
 my $cfg = 't/wordwrap.cfg';
-my $tidy = HTML::Tidy5->new( {config_file => $cfg} );
+my $tidy = HTML::T5->new( {config_file => $cfg} );
 
 my $result = $tidy->clean( $input );
 my @result = split(/\n/, $result);

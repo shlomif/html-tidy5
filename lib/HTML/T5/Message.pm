@@ -1,4 +1,4 @@
-package HTML::Tidy5::Message;
+package HTML::T5::Message;
 
 use 5.010001;
 use warnings;
@@ -6,7 +6,7 @@ use strict;
 
 =head1 NAME
 
-HTML::Tidy5::Message - Message object for the Tidy functionality
+HTML::T5::Message - Message object for the Tidy functionality
 
 =head1 EXPORTS
 

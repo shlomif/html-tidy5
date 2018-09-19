@@ -6,15 +6,15 @@ use strict;
 
 use Test::More tests => 3;
 
-use HTML::Tidy5;
+use HTML::T5;
 
 use lib 't';
 
 use TidyTestUtils;
 
 my $args = { newline => 'LF', wrap => 0 };
-my $tidy = HTML::Tidy5->new($args);
-isa_ok( $tidy, 'HTML::Tidy5' );
+my $tidy = HTML::T5->new($args);
+isa_ok( $tidy, 'HTML::T5' );
 $tidy->ignore( type => TIDY_INFO );
 
 # clean once
@@ -23,7 +23,7 @@ my $html = '<a href="http://www.example.com/"><em>This is a test.</a>';
 my $clean = $tidy->clean( $html );
 
 # then verify that it meets tidy's high standards
-$tidy = HTML::Tidy5->new($args); # reset messages;
+$tidy = HTML::T5->new($args); # reset messages;
 $tidy->ignore( type => TIDY_INFO );
 $clean = $tidy->clean($clean);
 my @messages = $tidy->messages( $clean );

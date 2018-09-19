@@ -7,15 +7,15 @@ use warnings;
 use Test::Exception;
 use Test::More tests => 3;
 
-use HTML::Tidy5;
+use HTML::T5;
 
 use lib 't';
 
 use TidyTestUtils;
 
 
-my $tidy = HTML::Tidy5->new( { wrap => 0 } );
-isa_ok( $tidy, 'HTML::Tidy5' );
+my $tidy = HTML::T5->new( { wrap => 0 } );
+isa_ok( $tidy, 'HTML::T5' );
 
 my $expected_pattern = 'Usage: clean($str [, $str...])';
 throws_ok {

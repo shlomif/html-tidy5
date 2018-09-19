@@ -70,10 +70,10 @@ unless (@build) {
 }
 
 my $parms = {
-    NAME                => 'HTML::Tidy5',
+    NAME                => 'HTML::T5',
     AUTHOR              => 'Andy Lester <andy@petdance.com>',
-    VERSION_FROM        => 'lib/HTML/Tidy5.pm',
-    ABSTRACT_FROM       => 'lib/HTML/Tidy5.pm',
+    VERSION_FROM        => 'lib/HTML/T5.pm',
+    ABSTRACT_FROM       => 'lib/HTML/T5.pm',
     PREREQ_PM           => {
         'Encode'          => 0,   # for tests
         'Exporter'        => 0,
@@ -108,7 +108,7 @@ my $parms = {
     @build,
     EXE_FILES           => [qw(bin/webtidy5)],
     dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
-    clean               => { FILES => 'HTML-Tidy5-*' },
+    clean               => { FILES => 'HTML-T5-*' },
 };
 
 WriteMakefile( %{$parms} );

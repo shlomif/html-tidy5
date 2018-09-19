@@ -1,15 +1,15 @@
-package HTML::Tidy5;
+package HTML::T5;
 
 use 5.010001;
 use strict;
 use warnings;
 use Carp ();
 
-use HTML::Tidy5::Message;
+use HTML::T5::Message;
 
 =head1 NAME
 
-HTML::Tidy5 - HTML validation in a Perl object
+HTML::T5 - HTML validation in a Perl object
 
 =head1 VERSION
 
@@ -21,9 +21,9 @@ our $VERSION = '1.06';
 
 =head1 SYNOPSIS
 
-    use HTML::Tidy5;
+    use HTML::T5;
 
-    my $tidy = HTML::Tidy5->new( {config_file => 'path/to/config'} );
+    my $tidy = HTML::T5->new( {config_file => 'path/to/config'} );
     $tidy->ignore( type => TIDY_WARNING, type => TIDY_INFO );
     $tidy->parse( "foo.html", $contents_of_foo );
 
@@ -33,7 +33,7 @@ our $VERSION = '1.06';
 
 =head1 DESCRIPTION
 
-C<HTML::Tidy5> is an HTML checker in a handy dandy object.  It's meant
+C<HTML::T5> is an HTML checker in a handy dandy object.  It's meant
 as a replacement for L<HTML::Lint|HTML::Lint>.  If you're currently
 an L<HTML::Lint|HTML::Lint> user looking to migrate, see the section
 L</Converting from HTML::Lint>.
@@ -58,26 +58,26 @@ our @EXPORT = qw( TIDY_ERROR TIDY_WARNING TIDY_INFO );
 
 =head2 new()
 
-Create an HTML::Tidy5 object.
+Create an HTML::T5 object.
 
-    my $tidy = HTML::Tidy5->new();
+    my $tidy = HTML::T5->new();
 
 Optionally you can give a hashref of configuration parms.
 
-    my $tidy = HTML::Tidy5->new( {config_file => 'path/to/tidy.cfg'} );
+    my $tidy = HTML::T5->new( {config_file => 'path/to/tidy.cfg'} );
 
 This configuration file will be read and used when you clean or parse an HTML file.
 
 You can also pass options directly to tidy.
 
-    my $tidy = HTML::Tidy5->new( {
+    my $tidy = HTML::T5->new( {
                                     output_xhtml => 1,
                                     tidy_mark => 0,
                                 } );
 
 See C<tidy -help-config> for the list of options supported by tidy.
 
-The following options are not supported by C<HTML::Tidy5>:
+The following options are not supported by C<HTML::T5>:
 
 =over 4
 
@@ -253,14 +253,14 @@ sub _parse_errors {
                 ($type eq 'Warning') ? TIDY_WARNING :
                 ($type eq 'Info')    ? TIDY_INFO :
                                        TIDY_ERROR;
-            $message = HTML::Tidy5::Message->new( $filename, $type, $line, $col, $text );
+            $message = HTML::T5::Message->new( $filename, $type, $line, $col, $text );
 
         }
         elsif ( $line =~ m/^Info: (.+)$/  ) {
             # Info line we don't want
 
             my $text = $1;
-            $message = HTML::Tidy5::Message->new( $filename, TIDY_INFO, undef, undef, $text );
+            $message = HTML::T5::Message->new( $filename, TIDY_INFO, undef, undef, $text );
         }
         elsif ( $line =~ /^Tidy found \d+ warnings? and \d+ errors?!/ ) {
             # Summary line we don't want
@@ -282,7 +282,7 @@ sub _parse_errors {
             # Blank line we don't want
         }
         else {
-            Carp::carp "HTML::Tidy5: Unknown error type: $line";
+            Carp::carp "HTML::T5: Unknown error type: $line";
             ++$parse_errors;
         }
         push( @{$self->{messages}}, $message )
@@ -355,7 +355,7 @@ sub tidy_library_version {
 }
 
 require XSLoader;
-XSLoader::load('HTML::Tidy5', $VERSION);
+XSLoader::load('HTML::T5', $VERSION);
 
 1;
 
@@ -363,20 +363,20 @@ __END__
 
 =head1 INSTALLING TIDY
 
-C<HTML::Tidy5> requires that the C<html-tidy> be installed on your system.
+C<HTML::T5> requires that the C<html-tidy> be installed on your system.
 You can probably obtain html-tidy through your distribution's package
 manager (make sure you install the development package with headers).  You
 can also check the html-tidy home page is L<http://www.html-tidy.org/>.
 
 =head1 CONVERTING FROM C<HTML::Lint>
 
-C<HTML::Tidy5> is different from C<HTML::Lint> in a number of crucial ways.
+C<HTML::T5> is different from C<HTML::Lint> in a number of crucial ways.
 
 =over 4
 
 =item * It's not pure Perl
 
-C<HTML::Tidy5> is mostly a happy wrapper around the html-tidy library.
+C<HTML::T5> is mostly a happy wrapper around the html-tidy library.
 
 =item * The real work is done by someone else
 
@@ -386,7 +386,7 @@ That's the price we pay for having it do a darn good job.
 =item * It's no longer bundled with its C<Test::> counterpart
 
 L<HTML::Lint|HTML::Lint> came bundled with C<Test::HTML::Lint>, but
-L<Test::HTML::Tidy5|Test::HTML::Tidy5> is a separate distribution.  This saves the people
+L<Test::HTML::T5|Test::HTML::T5> is a separate distribution.  This saves the people
 who don't want the C<Test::> framework from pulling it in, and all its
 prerequisite modules.
 
@@ -405,27 +405,23 @@ Please do NOT use L<http://rt.cpan.org>.
 
 You can find documentation for this module with the perldoc command.
 
-    perldoc HTML::Tidy5
+    perldoc HTML::T5
 
 You can also look for information at:
 
 =over 4
 
-=item * HTML::Tidy5's issue queue at github
+=item * HTML::T5's issue queue at github
 
-L<http://github.com/petdance/html-tidy5/issues>
+L<http://github.com/shlomif/html-tidy5/issues>
 
 =item * CPAN Ratings
 
-L<http://cpanratings.perl.org/d/HTML-Tidy5>
-
-=item * search.cpan.org
-
-L<http://search.cpan.org/dist/HTML-Tidy5>
+L<http://cpanratings.perl.org/d/HTML-T5>
 
 =item * Git source code repository
 
-L<http://github.com/petdance/html-tidy5>
+L<http://github.com/shlomif/html-tidy5>
 
 =back
 

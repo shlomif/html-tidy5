@@ -7,7 +7,7 @@ use strict;
 use Test::More tests => 3;
 
 use Test::Builder::Tester;
-use Test::HTML::Tidy5;
+use Test::HTML::T5;
 
 subtest 'html_fragment_tidy_ok fails on undef' => sub {
     plan tests => 1;

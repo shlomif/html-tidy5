@@ -7,7 +7,7 @@ use warnings;
 use Test::Exception;
 use Test::More;
 
-use HTML::Tidy5;
+use HTML::T5;
 
 my @unsupported_options = qw(
     force-output
@@ -21,7 +21,7 @@ my @unsupported_options = qw(
 
 foreach my $option ( @unsupported_options ) {
     throws_ok {
-        HTML::Tidy5->new(
+        HTML::T5->new(
             {
                 config_file => 't/cfg-for-parse.cfg',
                 $option     => 1,

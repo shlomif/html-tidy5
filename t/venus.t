@@ -6,7 +6,7 @@ use strict;
 
 use Test::More tests => 2;
 
-use HTML::Tidy5;
+use HTML::T5;
 
 my $filename = 't/venus.html';
 open( my $fh, '<', $filename ) or die "Can't open $filename: $!\n";
@@ -14,8 +14,8 @@ my $raw = do { local $/ = undef; <$fh> };
 close $fh or die $!;
 
 my $cfg = 't/venus.cfg';
-my $tidy = HTML::Tidy5->new( {config_file => $cfg} );
-isa_ok( $tidy, 'HTML::Tidy5' );
+my $tidy = HTML::T5->new( {config_file => $cfg} );
+isa_ok( $tidy, 'HTML::T5' );
 
 my $cooked = $tidy->clean( $raw );
 my @cooked = split( /\n/, $cooked );
