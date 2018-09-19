@@ -6,9 +6,9 @@ use strict;
 
 use Test::More tests => 1;
 
-use HTML::Tidy5;
+use HTML::T5;
 
-my $tidy = HTML::Tidy5->new({
+my $tidy = HTML::T5->new({
     tidy_mark           => 0,
     add_xml_decl        => 1,
     output_xhtml        => 1,

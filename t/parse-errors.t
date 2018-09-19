@@ -7,9 +7,9 @@ use warnings;
 use Test::Exception;
 use Test::More tests => 4;
 
-use HTML::Tidy5;
+use HTML::T5;
 
-my $tidy = HTML::Tidy5->new;
+my $tidy = HTML::T5->new;
 
 my $errbuf = join( '', <DATA> );
 
@@ -24,7 +24,7 @@ CATCH_A_WARNING: {
 
     # Check our warnings.
     is( $ncalls, 1, 'Warning should have been called exactly once' );
-    like( $stashed_warning, qr/HTML::Tidy5: Unknown error type: FAKE_ERROR_TYPE at/, 'Expected warning' );
+    like( $stashed_warning, qr/HTML::T5: Unknown error type: FAKE_ERROR_TYPE at/, 'Expected warning' );
 }
 
 __DATA__

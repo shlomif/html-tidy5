@@ -6,7 +6,7 @@ use strict;
 
 use Test::More tests => 2;
 
-use HTML::Tidy5;
+use HTML::T5;
 use Encode ();
 use Carp;
 
@@ -27,7 +27,7 @@ subtest 'utf8 testing' => sub {
     plan tests => 8;
 
     my $tidy_constructor_args = { newline => 'LF', wrap => 0 };
-    my $tidy = HTML::Tidy5->new( $tidy_constructor_args );
+    my $tidy = HTML::T5->new( $tidy_constructor_args );
     $tidy->ignore( type => TIDY_INFO );
 
     # Make sure both are unicode characters (not utf-x octets).
@@ -43,8 +43,8 @@ subtest 'utf8 testing' => sub {
     my @messages = $tidy->messages;
     is_deeply( \@messages, [], q{There still shouldn't be any errors} );
 
-    $tidy = HTML::Tidy5->new( $tidy_constructor_args );
-    isa_ok( $tidy, 'HTML::Tidy5' );
+    $tidy = HTML::T5->new( $tidy_constructor_args );
+    isa_ok( $tidy, 'HTML::T5' );
     my $rc = $tidy->parse( '', $html );
     ok( $rc, 'Parsed OK' );
     @messages = $tidy->messages;
@@ -55,7 +55,7 @@ subtest 'Try send bytes to clean method.' => sub {
     plan tests => 3;
 
     my $tidy_constructor_args = { newline => 'LF', wrap => 0 };
-    my $tidy = HTML::Tidy5->new( $tidy_constructor_args );
+    my $tidy = HTML::T5->new( $tidy_constructor_args );
     $tidy->ignore( type => TIDY_INFO );
 
     my $encoded_html = Encode::encode('utf8',$html);

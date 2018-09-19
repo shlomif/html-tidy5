@@ -1,4 +1,4 @@
-package Test::HTML::Tidy5;
+package Test::HTML::T5;
 
 use 5.010001;
 use warnings;
@@ -7,7 +7,7 @@ use strict;
 use Test::Builder;
 use Exporter;
 
-use HTML::Tidy5;
+use HTML::T5;
 
 use parent 'Exporter';
 
@@ -20,7 +20,7 @@ our @EXPORT = @EXPORT_OK;
 
 =head1 NAME
 
-Test::HTML::Tidy5 - Test::More-style wrapper around HTML::Tidy5
+Test::HTML::T5 - Test::More-style wrapper around HTML::T5
 
 =head1 VERSION
 
@@ -34,7 +34,7 @@ my $TB = Test::Builder->new;
 
 =head1 SYNOPSIS
 
-    use Test::HTML::Tidy5 tests => 4;
+    use Test::HTML::T5 tests => 4;
 
     my $table = build_display_table();
     html_tidy_ok( $table, 'Built display table properly' );
@@ -71,10 +71,10 @@ sub import {
 
 Checks to see if C<$html> is a valid HTML document.
 
-If you pass an HTML::Tidy5 object, C<html_tidy_ok()> will use that for its 
+If you pass an HTML::T5 object, C<html_tidy_ok()> will use that for its
 settings.
 
-    my $tidy = HTML::Tidy5->new( {config_file => 'path/to/config'} );
+    my $tidy = HTML::T5->new( {config_file => 'path/to/config'} );
     $tidy->ignore( type => TIDY_WARNING, type => TIDY_INFO );
     html_tidy_ok( $tidy, $content, "Web page is OK, ignoring warnings and info' );
 
@@ -85,7 +85,7 @@ Otherwise, it will use the default rules.
 =cut
 
 sub html_tidy_ok {
-    my $tidy = (ref($_[0]) eq 'HTML::Tidy5') ? shift : HTML::Tidy5->new;
+    my $tidy = (ref($_[0]) eq 'HTML::T5') ? shift : HTML::T5->new;
     my $html = shift;
     my $name = shift;
 
@@ -112,7 +112,7 @@ that it is valid.
 =cut
 
 sub html_fragment_tidy_ok {
-    my $tidy = (ref($_[0]) eq 'HTML::Tidy5') ? shift : HTML::Tidy5->new;
+    my $tidy = (ref($_[0]) eq 'HTML::T5') ? shift : HTML::T5->new;
     my $html = shift;
     my $name = shift;
 

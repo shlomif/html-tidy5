@@ -6,7 +6,7 @@ use strict;
 
 use Test::More tests => 3;
 
-use HTML::Tidy5;
+use HTML::T5;
 
 my $html = do { local $/ = undef; <DATA> };
 
@@ -17,8 +17,8 @@ HERE
 
 chomp @expected_messages;
 
-my $tidy = HTML::Tidy5->new( { config_file => 't/cfg-for-parse.cfg' } );
-isa_ok( $tidy, 'HTML::Tidy5' );
+my $tidy = HTML::T5->new( { config_file => 't/cfg-for-parse.cfg' } );
+isa_ok( $tidy, 'HTML::T5' );
 
 my $rc = $tidy->parse( 'DATA', $html );
 ok( $rc, 'Parsed OK' );

@@ -5,12 +5,12 @@ use warnings;
 use strict;
 
 use Getopt::Long;
-use HTML::Tidy5;
+use HTML::T5;
 
 my $help;
 my $context;
 
-my $tidy = HTML::Tidy5->new;
+my $tidy = HTML::T5->new;
 
 GetOptions(
     'help|version'  => \$help,
@@ -20,7 +20,7 @@ GetOptions(
 ) or $help = 1;
 
 if ( !@ARGV || $help ) {
-    print "webtidy v$HTML::Tidy5::VERSION using tidy v" . HTML::Tidy5::tidy_library_version() . "\n";
+    print "webtidy v$HTML::T5::VERSION using tidy v" . HTML::T5::tidy_library_version() . "\n";
     print <DATA>;
     exit 1;
 }

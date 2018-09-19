@@ -6,7 +6,7 @@ use strict;
 
 use Test::More tests => 4;
 
-use HTML::Tidy5;
+use HTML::T5;
 
 use lib 't';
 
@@ -49,8 +49,8 @@ my @all_errors = (
 subtest 'default constructor warns about <nav> tag' => sub {
     plan tests => 2;
 
-    my $tidy = HTML::Tidy5->new;
-    isa_ok( $tidy, 'HTML::Tidy5' );
+    my $tidy = HTML::T5->new;
+    isa_ok( $tidy, 'HTML::T5' );
     $tidy->parse( 'test', $html );
 
     messages_are( $tidy, [ @all_errors ] );
@@ -60,8 +60,8 @@ subtest 'default constructor warns about <nav> tag' => sub {
 subtest 'Only add new blocklevel' => sub {
     plan tests => 2;
 
-    my $tidy = HTML::Tidy5->new( { 'new-blocklevel-tags' => 'newblock,otherblock' } );
-    isa_ok( $tidy, 'HTML::Tidy5' );
+    my $tidy = HTML::T5->new( { 'new-blocklevel-tags' => 'newblock,otherblock' } );
+    isa_ok( $tidy, 'HTML::T5' );
     $tidy->parse( 'test', $html );
 
     messages_are( $tidy, [ grep { !/block/ } @all_errors ], 'Excluded the block errors' );
@@ -71,8 +71,8 @@ subtest 'Only add new blocklevel' => sub {
 subtest 'Only add new inline' => sub {
     plan tests => 2;
 
-    my $tidy = HTML::Tidy5->new( { 'new-inline-tags' => 'newinline' } );
-    isa_ok( $tidy, 'HTML::Tidy5' );
+    my $tidy = HTML::T5->new( { 'new-inline-tags' => 'newinline' } );
+    isa_ok( $tidy, 'HTML::T5' );
     $tidy->parse( 'test', $html );
 
     messages_are( $tidy, [ grep { !/inline/ } @all_errors ], 'Excluded the inline errors' );
@@ -82,11 +82,11 @@ subtest 'Only add new inline' => sub {
 subtest 'Add new line and blocklevel' => sub {
     plan tests => 2;
 
-    my $tidy = HTML::Tidy5->new( {
+    my $tidy = HTML::T5->new( {
         'new-blocklevel-tags' => 'newblock,otherblock',
         'new-inline-tags'     => 'newinline',
     } );
-    isa_ok( $tidy, 'HTML::Tidy5' );
+    isa_ok( $tidy, 'HTML::T5' );
     $tidy->parse( 'test', $html );
 
     messages_are( $tidy, [], 'Quieted all errors' );

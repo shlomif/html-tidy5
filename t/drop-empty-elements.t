@@ -6,7 +6,7 @@ use strict;
 
 use Test::More tests => 3;
 
-use HTML::Tidy5;
+use HTML::T5;
 
 use lib 't';
 
@@ -27,8 +27,8 @@ HTML
 subtest 'default constructor warns about empty spans' => sub {
     plan tests => 2;
 
-    my $tidy = HTML::Tidy5->new;
-    isa_ok( $tidy, 'HTML::Tidy5' );
+    my $tidy = HTML::T5->new;
+    isa_ok( $tidy, 'HTML::T5' );
     $tidy->parse( 'test', $html );
 
     messages_are( $tidy,
@@ -39,8 +39,8 @@ subtest 'default constructor warns about empty spans' => sub {
 subtest 'drop_empty_elements => 1 gives message' => sub {
     plan tests => 2;
 
-    my $tidy = HTML::Tidy5->new( { drop_empty_elements => 1 } );
-    isa_ok( $tidy, 'HTML::Tidy5' );
+    my $tidy = HTML::T5->new( { drop_empty_elements => 1 } );
+    isa_ok( $tidy, 'HTML::T5' );
     $tidy->parse( 'test', $html );
 
     messages_are( $tidy,
@@ -51,8 +51,8 @@ subtest 'drop_empty_elements => 1 gives message' => sub {
 subtest 'drop_empty_elements => 0 gives no messages' => sub {
     plan tests => 2;
 
-    my $tidy = HTML::Tidy5->new( { drop_empty_elements => 0 } );
-    isa_ok( $tidy, 'HTML::Tidy5' );
+    my $tidy = HTML::T5->new( { drop_empty_elements => 0 } );
+    isa_ok( $tidy, 'HTML::T5' );
     $tidy->parse( 'test', $html );
 
     messages_are( $tidy, [] );

@@ -36,7 +36,7 @@ _load_config_hash(TidyDoc tdoc, HV *tidy_options)
         }
     }
 }
-MODULE = HTML::Tidy5        PACKAGE = HTML::Tidy5
+MODULE = HTML::T5        PACKAGE = HTML::T5
 
 PROTOTYPES: ENABLE
 

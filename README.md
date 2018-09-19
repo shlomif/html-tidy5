@@ -1,12 +1,12 @@
-HTML::Tidy5
+HTML::T5
 ===========
-HTML::Tidy5 is an HTML checker in a handy dandy object.
+HTML::T5 is an HTML checker in a handy dandy object.
 
 
 PREREQUISITES
 =============
-HTML::Tidy5 does very little work.  The real work of HTML::Tidy5 is done
-by the [html-tidy][1] library which is written in C.  To use HTML::Tidy5,
+HTML::T5 does very little work.  The real work of HTML::T5 is done
+by the [html-tidy][1] library which is written in C.  To use HTML::T5,
 you must install html-tidy.  Your package manager probably has it, either
 as "tidy" or "html-tidy" or "libtidy".  If there's an option to get a
 "-devel" package, get that, too, because Perl needs the header files
@@ -16,7 +16,7 @@ in it.
 INSTALLATION
 ============
 Once you have libtidy installed via one of the previous methods,
-install HTML::Tidy5 like any standard Perl module.
+install HTML::T5 like any standard Perl module.
 
     perl Makefile.PL
     make

@@ -6,7 +6,7 @@ use warnings;
 
 use Test::More tests => 9;
 
-use HTML::Tidy5;
+use HTML::T5;
 
 my $html = do { local $/ = undef; <DATA> };
 
@@ -27,8 +27,8 @@ HERE
 chomp @expected_errors;
 
 WARNINGS_ONLY: {
-    my $tidy = HTML::Tidy5->new;
-    isa_ok( $tidy, 'HTML::Tidy5' );
+    my $tidy = HTML::T5->new;
+    isa_ok( $tidy, 'HTML::T5' );
 
     $tidy->ignore( type => TIDY_ERROR );
     my $rc = $tidy->parse( '-', $html );
@@ -41,8 +41,8 @@ WARNINGS_ONLY: {
 }
 
 ERRORS_ONLY: {
-    my $tidy = HTML::Tidy5->new;
-    isa_ok( $tidy, 'HTML::Tidy5' );
+    my $tidy = HTML::T5->new;
+    isa_ok( $tidy, 'HTML::T5' );
 
     $tidy->ignore( type => TIDY_WARNING );
     $tidy->ignore( type => TIDY_INFO );
@@ -55,8 +55,8 @@ ERRORS_ONLY: {
 }
 
 DIES_ON_ERROR: {
-    my $tidy = HTML::Tidy5->new;
-    isa_ok( $tidy, 'HTML::Tidy5' );
+    my $tidy = HTML::T5->new;
+    isa_ok( $tidy, 'HTML::T5' );
 
     my $rc = eval { $tidy->ignore( blongo => TIDY_WARNING ) };
     ok( !$rc, 'eval should fail' );

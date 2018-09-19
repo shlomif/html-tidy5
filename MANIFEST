@@ -1,14 +1,14 @@
 bin/webtidy5
 Changes
-lib/HTML/Tidy5.pm
-lib/HTML/Tidy5/Message.pm
-lib/Test/HTML/Tidy5.pm
+lib/HTML/T5.pm
+lib/HTML/T5/Message.pm
+lib/Test/HTML/T5.pm
 Makefile.PL
 MANIFEST
 perlcriticrc
 ppport.h
 README.md
-Tidy5.xs
+T5.xs
 
 t/00-load.t
 t/cfg-for-parse.cfg

@@ -7,10 +7,10 @@ use warnings;
 use Test::Exception;
 use Test::More tests => 2;
 
-use HTML::Tidy5;
+use HTML::T5;
 
-my $tidy = HTML::Tidy5->new;
-isa_ok( $tidy, 'HTML::Tidy5' );
+my $tidy = HTML::T5->new;
+isa_ok( $tidy, 'HTML::T5' );
 
 my $expected_pattern = 'Usage: parse($filename,$str [, $str...])';
 throws_ok {
