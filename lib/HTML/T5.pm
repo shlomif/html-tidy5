@@ -36,6 +36,8 @@ as a replacement for L<HTML::Lint|HTML::Lint>.  If you're currently
 an L<HTML::Lint|HTML::Lint> user looking to migrate, see the section
 L</Converting from HTML::Lint>.
 
+C<HTML::T5> was forked from L<HTML::Tidy5> by Andy Lester (PETDANCE), thanks.
+
 =head1 EXPORTS
 
 Message types C<TIDY_ERROR>, C<TIDY_WARNING> and C<TIDY_INFO>.
@@ -429,6 +431,8 @@ Thanks to
 Rufus Cable,
 Jonathan Rockway,
 and Robert Bachmann for contributions.
+
+Thanks to L<https://github.com/robrwo> for the code to use L<Alien::TidyHTML5> .
 
 =head1 AUTHOR
 
