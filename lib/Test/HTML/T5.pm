@@ -28,7 +28,7 @@ Version 1.04
 
 =cut
 
-our $VERSION = '1.04';
+our $VERSION = '0.001';
 
 my $TB = Test::Builder->new;
 
