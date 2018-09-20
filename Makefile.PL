@@ -91,11 +91,9 @@ my $parms = {
         'meta-spec' => { version => 2 },
         prereqs => {
             configure => {
-                recommends => {
-                    'Devel::CheckLib'      => 0,
-                    'Alien::Base::Wrapper' => 0,
-                    'Alien::TidyHTML5'     => 0,
-                },
+                'Devel::CheckLib'      => 0,
+                'Alien::Base::Wrapper' => 0,
+                'Alien::TidyHTML5'     => 0,
             },
         },
         resources => {
