@@ -1,4 +1,4 @@
-bin/webtidy5
+bin/web-t5
 Changes
 lib/HTML/T5.pm
 lib/HTML/T5/Message.pm
