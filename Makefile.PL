@@ -5,7 +5,7 @@ package main;
 use 5.010001;
 use strict;
 use warnings;
-use ExtUtils::MakeMaker 6.48;
+use ExtUtils::MakeMaker 6.52;
 use ExtUtils::Liblist;
 use Config;
 
@@ -70,6 +70,11 @@ unless (@build) {
 }
 
 my $parms = {
+    CONFIGURE_REQUIRES => {
+        'Devel::CheckLib'      => 0,
+        'Alien::Base::Wrapper' => 0,
+        'Alien::TidyHTML5'     => 0,
+    },
     NAME                => 'HTML::T5',
     AUTHOR              => 'Andy Lester <andy@petdance.com>',
     VERSION_FROM        => 'lib/HTML/T5.pm',
@@ -88,13 +93,6 @@ my $parms = {
     MIN_PERL_VERSION    => 5.010001,
     LICENSE             => 'artistic_2',
     META_MERGE => {
-        prereqs => {
-            configure => {
-                'Devel::CheckLib'      => 0,
-                'Alien::Base::Wrapper' => 0,
-                'Alien::TidyHTML5'     => 0,
-            },
-        },
         resources => {
             license     => 'http://www.opensource.org/licenses/artistic-license-2.0.php',
             homepage    => 'http://github.com/shlomif/html-tidy5',
