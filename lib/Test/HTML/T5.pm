@@ -24,11 +24,11 @@ Test::HTML::T5 - Test::More-style wrapper around HTML::T5
 
 =head1 VERSION
 
-Version 1.04
+Version 0.002
 
 =cut
 
-our $VERSION = '0.001';
+our $VERSION = '0.002';
 
 my $TB = Test::Builder->new;
 
@@ -54,18 +54,18 @@ C<html_tidy_ok>
 
 =cut
 
-sub import {
+sub import
+{
     my $self = shift;
     my $pack = caller;
 
     $TB->exported_to($pack);
     $TB->plan(@_);
 
-    $self->export_to_level(1, $self, @EXPORT);
+    $self->export_to_level( 1, $self, @EXPORT );
 
     return;
 }
-
 
 =head2 html_tidy_ok( [$tidy, ] $html, $name )
 
@@ -84,23 +84,25 @@ Otherwise, it will use the default rules.
 
 =cut
 
-sub html_tidy_ok {
-    my $tidy = (ref($_[0]) eq 'HTML::T5') ? shift : HTML::T5->new;
+sub html_tidy_ok
+{
+    my $tidy = ( ref( $_[0] ) eq 'HTML::T5' ) ? shift : HTML::T5->new;
     my $html = shift;
     my $name = shift;
 
     my $ok = defined $html;
-    if ( !$ok ) {
+    if ( !$ok )
+    {
         $TB->ok( 0, $name );
-        $TB->diag( 'Error: html_tidy_ok() got undef' );
+        $TB->diag('Error: html_tidy_ok() got undef');
     }
-    else {
+    else
+    {
         $ok = _parse_and_complain( $tidy, $html, $name, 0 );
     }
 
     return $ok;
 }
-
 
 =head2 html_fragment_tidy_ok( [$tidy, ] $html, $name )
 
@@ -111,17 +113,20 @@ that it is valid.
 
 =cut
 
-sub html_fragment_tidy_ok {
-    my $tidy = (ref($_[0]) eq 'HTML::T5') ? shift : HTML::T5->new;
+sub html_fragment_tidy_ok
+{
+    my $tidy = ( ref( $_[0] ) eq 'HTML::T5' ) ? shift : HTML::T5->new;
     my $html = shift;
     my $name = shift;
 
     my $ok = defined $html;
-    if ( !$ok ) {
+    if ( !$ok )
+    {
         $TB->ok( 0, $name );
-        $TB->diag( 'Error: html_fragment_tidy_ok() got undef' );
+        $TB->diag('Error: html_fragment_tidy_ok() got undef');
     }
-    else {
+    else
+    {
         $html = <<"HTML";
 <!DOCTYPE html>
 <html>
@@ -140,8 +145,8 @@ HTML
     return $ok;
 }
 
-
-sub _parse_and_complain {
+sub _parse_and_complain
+{
     local $Test::Builder::Level = $Test::Builder::Level + 1;
 
     my $tidy   = shift;
@@ -152,26 +157,27 @@ sub _parse_and_complain {
     $tidy->clear_messages();
     $tidy->parse( undef, $html );
 
-    my @messages = $tidy->messages;
+    my @messages  = $tidy->messages;
     my $nmessages = @messages;
 
     my $ok = !$nmessages;
     $TB->ok( $ok, $name );
-    if ( !$ok ) {
-        if ( $offset ) {
+    if ( !$ok )
+    {
+        if ($offset)
+        {
             $_->{_line} -= $offset for @messages;
         }
         my $msg = 'Errors:';
         $msg .= " $name" if $name;
-        $TB->diag( $msg );
+        $TB->diag($msg);
         $TB->diag( $_->as_string ) for @messages;
         my $s = $nmessages == 1 ? '' : 's';
-        $TB->diag( "$nmessages message$s on the page" );
+        $TB->diag("$nmessages message$s on the page");
     }
 
     return $ok;
 }
-
 
 =head1 BUGS
 
