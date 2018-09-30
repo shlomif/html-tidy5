@@ -107,6 +107,13 @@ my $parms = {
             bugtracker  => 'http://github.com/shlomif/html-tidy5/issues',
             repository  => 'http://github.com/shlomif/html-tidy5',
         },
+        x_contributors => [
+            'Andy Lester <andy@petdance.com>',
+            'Jonathan Rockway <jrockway@cpan.org>',
+            'Robert Bachmann <rbach@cpan.org>',
+            'Robert Rothenberg <rrwo@cpan.com>',
+            'Rufus Cable <cpan@threebytesfull.com>',
+        ],
     },
     @build,
     EXE_FILES           => [qw(bin/web-t5)],
