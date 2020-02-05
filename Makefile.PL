@@ -6,7 +6,9 @@ use 5.010001;
 use strict;
 use warnings;
 
-use Alien::Base::Wrapper 2.000 qw/ WriteMakefile /;
+use ExtUtils::MakeMaker 6.52;
+use Alien::Base::Wrapper 2.02;
+
 my @build = (
     alien_requires => {
         'Alien::TidyHTML5' => '0.3.0',
@@ -14,6 +16,9 @@ my @build = (
 );
 
 my $parms = {
+    CONFIGURE_REQUIRES => {
+        'Alien::Base::Wrapper' => '2.02',
+    },
     NAME          => 'HTML::T5',
     AUTHOR        => 'Andy Lester <andy@petdance.com>',
     VERSION_FROM  => 'lib/HTML/T5.pm',
@@ -59,7 +64,10 @@ my $parms = {
     clean     => { FILES => 'HTML-T5-*' },
 };
 
-WriteMakefile( %{$parms}, @build, );
+my %foo =
+    Alien::Base::Wrapper->new('Alien::TidyHTML5=0.3.0')->mm_args2(%$parms);
+$foo{CONFIGURE_REQUIRES}{'Alien::Base::Wrapper'} = '2.02';
+WriteMakefile(%foo);
 
 sub MY::postamble
 {    ## no critic ( Subroutines::ProhibitQualifiedSubDeclarations )
