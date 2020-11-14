@@ -88,6 +88,7 @@ my $parms = {
     MIN_PERL_VERSION    => 5.010001,
     LICENSE             => 'artistic_2',
     META_MERGE => {
+        'meta-spec' => { version => 2 },
         prereqs => {
             configure => {
                 recommends => {
