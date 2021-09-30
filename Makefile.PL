@@ -37,6 +37,7 @@ my $parms = {
     MIN_PERL_VERSION => 5.010001,
     LICENSE          => 'artistic_2',
     META_MERGE       => {
+
         # Disable for now because it makes the build fail.
         # 'meta-spec' => { version => 2 },
         prereqs => {
@@ -47,10 +48,11 @@ my $parms = {
             },
         },
         resources => {
-            license     => 'http://www.opensource.org/licenses/artistic-license-2.0.php',
-            homepage    => 'http://github.com/shlomif/html-tidy5',
-            bugtracker  => 'http://github.com/shlomif/html-tidy5/issues',
-            repository  => 'http://github.com/shlomif/html-tidy5',
+            license =>
+                'http://www.opensource.org/licenses/artistic-license-2.0.php',
+            homepage   => 'http://github.com/shlomif/html-tidy5',
+            bugtracker => 'http://github.com/shlomif/html-tidy5/issues',
+            repository => 'http://github.com/shlomif/html-tidy5',
         },
         x_contributors => [
             'Andy Lester <andy@petdance.com>',
@@ -62,12 +64,21 @@ my $parms = {
     },
     EXE_FILES => [qw(bin/web-t5)],
     dist      => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
-    clean     => { FILES => 'HTML-T5-*' },
+    clean     => { FILES    => 'HTML-T5-*' },
 };
 
 my %foo =
     Alien::Base::Wrapper->new('Alien::TidyHTML5=0.3.0')->mm_args2(%$parms);
 $foo{CONFIGURE_REQUIRES}{'Alien::Base::Wrapper'} = '2.02';
+$foo{LIBS}[0] =~ s#-ltidy\b#-ltidy#ms
+    or die;
+$foo{LIBS}[0] =~ s#-L\S+##ms
+    or die;
+$foo{LDDLFLAGS} =~ s#-L\S+##gms
+    or die;
+$foo{LDFLAGS} =~ s#-L\S+##gms
+    or die;
+delete $foo{INC};
 WriteMakefile(%foo);
 
 sub MY::postamble
