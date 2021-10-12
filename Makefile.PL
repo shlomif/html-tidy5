@@ -68,6 +68,7 @@ my $parms = {
 my %foo =
     Alien::Base::Wrapper->new('Alien::TidyHTML5=0.3.0')->mm_args2(%$parms);
 $foo{CONFIGURE_REQUIRES}{'Alien::Base::Wrapper'} = '2.02';
+$foo{LDDLFLAGS} =~ s#\A(-L(/\S+))#-Wl,-rpath -Wl,$2 $1#ms;
 WriteMakefile(%foo);
 
 sub MY::postamble
