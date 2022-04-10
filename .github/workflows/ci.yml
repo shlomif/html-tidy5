@@ -29,9 +29,10 @@ jobs:
 
     - name: Install dependencies
       run: |
+          cpanm ExtUtils::MakeMaker
+          cpanm Alien::Base::Wrapper
           cpanm --installdeps .
           cpanm Alien::TidyHTML5
-          cpanm Alien::Base::Wrapper
 
     - name: Show content of log files on Linux
       if: ${{ failure() && startsWith( matrix.runner, 'ubuntu-' )  }}
@@ -50,5 +51,6 @@ jobs:
           perl Makefile.PL
           make
           make test
+          make disttest
 
 
