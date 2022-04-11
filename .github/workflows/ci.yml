@@ -29,11 +29,11 @@ jobs:
 
     - name: Install dependencies
       run: |
-          cpanm ExtUtils::MakeMaker
-          cpanm Alien::Base::Wrapper
+          cpanm -vvv ExtUtils::MakeMaker
+          cpanm -vvv Alien::Base::Wrapper
           _debug() { (set -x; pwd; perl -V; ls -lA; cpanm --version;) }; _debug
-          cpanm --installdeps .
-          cpanm Alien::TidyHTML5
+          cpanm -vvv --installdeps .
+          cpanm -vvv Alien::TidyHTML5
 
     - name: Show content of log files on Linux
       if: ${{ failure() && startsWith( matrix.runner, 'ubuntu-' )  }}
