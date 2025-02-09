@@ -422,10 +422,6 @@ You can also look for information at:
 
 L<http://github.com/shlomif/html-tidy5/issues>
 
-=item * CPAN Ratings
-
-L<http://cpanratings.perl.org/d/HTML-T5>
-
 =item * Git source code repository
 
 L<http://github.com/shlomif/html-tidy5>
